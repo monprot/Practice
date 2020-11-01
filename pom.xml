@@ -7,6 +7,8 @@
     <groupId>org.example</groupId>
     <artifactId>Practice</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.8.10</aspectj.version>
@@ -16,13 +18,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-
         <service.declaration.dir>src/main/resources</service.declaration.dir>
         <service.files.path>META-INF/services</service.files.path>
 
-        <fork.Count>1</fork.Count>
-        <pulseUpFile>src\main\resources\testng.xml</pulseUpFile>
-
+        <fork.Count>2</fork.Count>
+        <suiteXmlFile>src\main\resources\testng.xml</suiteXmlFile>
 
     </properties>
 
@@ -34,6 +34,8 @@
             <version>7.1.0</version>
             <scope>test</scope>
         </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -56,7 +58,10 @@
         </dependency>
 
 
+
     </dependencies>
+
+
     <build>
         <plugins>
 
@@ -66,9 +71,9 @@
                 <version>2.22.1</version>
                 <configuration>
 
-                    <suiteXmlFiles>
-                        <pulseUpFile>${pulseUpFile}</pulseUpFile>
-                    </suiteXmlFiles>
+                                       <suiteXmlFiles>
+                                            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                                        </suiteXmlFiles>
 
 
                     <forkCount>${fork.Count}</forkCount>
@@ -78,6 +83,9 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+
+
+
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
@@ -85,6 +93,7 @@
                         </property>
 
                     </systemProperties>
+
 
                 </configuration>
                 <dependencies>
