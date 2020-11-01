@@ -5,32 +5,35 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Practice</artifactId>
+    <artifactId>HomeTests</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <aspectj.version>1.8.10</aspectj.version>
-        <allure-testng.version>2.6.0</allure-testng.version>
+        <allure.version>2.7.0</allure.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
+
         <service.declaration.dir>src/main/resources</service.declaration.dir>
         <service.files.path>META-INF/services</service.files.path>
 
         <fork.Count>2</fork.Count>
-        <suiteXmlFile>src\main\resources\testng.xml</suiteXmlFile>
+        <pulseUpFile>src\main\resources\testng.xml</pulseUpFile>
+
 
     </properties>
 
     <dependencies>
-
-
-
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.1.0</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -49,7 +52,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>${allure-testng.version}</version>
+            <version>2.13.6</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -58,10 +61,7 @@
             <scope>compile</scope>
         </dependency>
 
-
     </dependencies>
-
-
     <build>
         <plugins>
 
@@ -71,9 +71,9 @@
                 <version>2.22.1</version>
                 <configuration>
 
-                                       <suiteXmlFiles>
-                                            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-                                        </suiteXmlFiles>
+                    <suiteXmlFiles>
+                        <pulseUpFile>${pulseUpFile}</pulseUpFile>
+                    </suiteXmlFiles>
 
 
                     <forkCount>${fork.Count}</forkCount>
@@ -83,39 +83,14 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-
-
-
-                    <!--  <systemProperties>
-                          <property>
-                              <name>allure.results.directory</name>
-                              <value>${project.build.directory}/target/allure-results</value>
-                          </property>
-
-                      </systemProperties>-->
-
-
-                  </configuration>
-                  <dependencies>
-                      <dependency>
-                          <groupId>org.aspectj</groupId>
-                          <artifactId>aspectjweaver</artifactId>
-                          <version>${aspectj.version}</version>
-                      </dependency>
-                  </dependencies>
-              </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
                             <value>${project.build.directory}/allure-results</value>
                         </property>
+
                     </systemProperties>
+
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -126,9 +101,9 @@
                 </dependencies>
             </plugin>
 
-          </plugins>
+
+        </plugins>
 
 
-      </build>
-
-  </project>
+    </build>
+</project>

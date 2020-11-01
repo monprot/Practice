@@ -44,7 +44,7 @@ public class SendMailTest extends Settings{
          */
         in.clickInputsMail();//нажать на кнопку входящие
         in.clickRefresh();//нажать на кнопку обновить
-        Thread.sleep(3500);
+        Thread.sleep(3000);
         in.assertMail1();
 
         /**
